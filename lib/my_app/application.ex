@@ -7,6 +7,7 @@ defmodule MyApp.Application do
 
   def start(_type, _args) do
     children = [
+      {Cluster.Supervisor, [Application.get_env(:libcluster, :topologies), [name: MyApp.ClusterSupervisor]]},
       # Starts a worker by calling: MyApp.Worker.start_link(arg)
       # {MyApp.Worker, arg}
       {DynamicSupervisor, strategy: :one_for_one, name: MyApp.DynamicSupervisor},
