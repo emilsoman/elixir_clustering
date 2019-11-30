@@ -9,6 +9,7 @@ defmodule MyApp.Application do
     children = [
       # Starts a worker by calling: MyApp.Worker.start_link(arg)
       # {MyApp.Worker, arg}
+      {DynamicSupervisor, strategy: :one_for_one, name: MyApp.DynamicSupervisor},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
